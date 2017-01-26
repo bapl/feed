@@ -1,8 +1,6 @@
 package feed.bapl.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
 
 import feed.bapl.localcache.LocalCache;
 import feed.bapl.redis.FeedRedis;
@@ -16,12 +14,19 @@ public class FeedPullService {
 	private int followFeedSize;
 
 	public List firstFeedData(User user){	
-		int page=1;
-		if(localCache.containsKey(user.getUserId())){			
+		return lastFeedData(user, 1);
+	}
+	public List getCurrentFeedData(User user){
+		return null;
+	}
+	public List nextFeedData(User user,int page){
+		List followsFeed=feedRedis.getFeeds(user.getUserId(),page);
+		if(followsFeed==null||followsFeed.isEmpty()){
 			return feedRedis.getLastFeeds(user.getUserId(),page);
 		}
-		return lastFeedData(user, page);
+		return followsFeed;
 	}
+	
 	public List lastFeedData(User user,int page){
 		//先判断redis 最近feed 集合是否有数据
 		 List followsFeed=feedRedis.getLastFeeds(user.getUserId(),page);

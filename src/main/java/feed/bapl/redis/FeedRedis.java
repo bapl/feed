@@ -57,4 +57,8 @@ public class FeedRedis {
 		//update author lastupdateTime
 		
 	}
+	public List getFeeds(long userId, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
