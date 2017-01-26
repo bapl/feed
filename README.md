@@ -1,10 +1,10 @@
 # feed
 
-数据库的数据，根据用户分库，根据时间进行分表的机制
+数据库的数据，根据用户id分库，根据时间进行分表的机制
 
 用户信息表（user_id,user_name.....）；
 用户关注表(user_id,follow_user_id,follow_last_login_dt)；
-用户发布信息统计表(维度天)（user_id,publish_id,publish_date）；
+用户发布信息统计表(维度天)（user_id,publish_id,publish_date,count....）；
 用户具体发布的数据（user_id,publish_id,publish_date,publish_content,.....）
 #
 用户数据，分成3个
